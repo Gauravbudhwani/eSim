@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KiSignal-Guard Report - Demo_HighSpeed_IoT_Controller.kicad_pcb</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 30px; background: #f8fafc; color: #1e293b; }
+        .header { background: #ffffff; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 24px; }
+        .score-circle { font-size: 36px; font-weight: bold; color: #ef4444; }
+        .stats { display: flex; gap: 20px; margin-top: 15px; }
+        .stat-box { background: #f1f5f9; padding: 12px 20px; border-radius: 6px; }
+        table { width: 100%; border-collapse: collapse; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
+        th { background: #0f172a; color: #ffffff; font-weight: 600; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-weight: 600; font-size: 11px; }
+        .badge-error { background: #fee2e2; color: #b91c1c; }
+        .badge-warning { background: #fef3c7; color: #b45309; }
+        .badge-info { background: #e0f2fe; color: #0369a1; }
+        .rec { color: #047857; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>KiSignal-Guard SI & EMC Audit</h1>
+        <p><strong>Board:</strong> Demo_HighSpeed_IoT_Controller.kicad_pcb | <strong>Execution Time:</strong> 0.3 ms</p>
+        <div class="score-circle">35.0% Signal Integrity Score</div>
+        <div class="stats">
+            <div class="stat-box"><strong>Errors:</strong> 4</div>
+            <div class="stat-box"><strong>Warnings:</strong> 1</div>
+            <div class="stat-box"><strong>Info:</strong> 0</div>
+            <div class="stat-box"><strong>Rules Run:</strong> 5</div>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Severity</th>
+                <th>Rule</th>
+                <th>Category</th>
+                <th>Net</th>
+                <th>Location (mm)</th>
+                <th>Diagnostic</th>
+                <th>Actionable Remediation</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td><span class="badge badge-error">ERROR</span></td>
+                <td><code>EMC-001</code></td>
+                <td>Return Path & EMC</td>
+                <td><strong>CLK_100MHz</strong></td>
+                <td>(40.00, 25.00)</td>
+                <td>Track on net 'CLK_100MHz' crosses a copper void/split plane. 1/4 sample points lack reference ground.</td>
+                <td class="rec">Reroute net 'CLK_100MHz' over a solid, unbroken ground plane or add a stitching capacitor / ground bridge across the plane split.</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-error">ERROR</span></td>
+                <td><code>PDN-001</code></td>
+                <td>PDN & Decoupling</td>
+                <td><strong>+3V3</strong></td>
+                <td>(20.00, 10.00)</td>
+                <td>Decoupling cap C1 is 8.50 mm away from U1 pin 1 (Exceeds 6.0 mm limit). Estimated parasitic loop inductance: ~14.4 nH.</td>
+                <td class="rec">Move capacitor C1 closer (< 3.5 mm) to U1 pin 1 to minimize PDN impedance.</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-error">ERROR</span></td>
+                <td><code>SI-001</code></td>
+                <td>Crosstalk & Isolation</td>
+                <td><strong>SPI_MOSI <-> SPI_SCK</strong></td>
+                <td>(18.00, 35.17)</td>
+                <td>Crosstalk hazard between nets 'SPI_MOSI' and 'SPI_SCK'. Parallel coupling run is 16.00 mm with spacing 0.10 mm (Violates 3W rule: required gap >= 0.50 mm).</td>
+                <td class="rec">Increase spacing between 'SPI_MOSI' and 'SPI_SCK' to at least 0.50 mm or interpose an in-between ground shield trace.</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-error">ERROR</span></td>
+                <td><code>SI-002</code></td>
+                <td>Differential Pair</td>
+                <td><strong>USB_D_P/USB_D_N</strong></td>
+                <td>(17.50, 5.00)</td>
+                <td>Differential pair 'USB_D_P' / 'USB_D_N' has severe length mismatch: 25.00 mm vs 21.00 mm (Delta: 4.00 mm, Skew: ~24.8 ps).</td>
+                <td class="rec">Add serpentine / meander length tuning to the shorter net to balance within 0.5 mm (< 3.1 ps).</td>
+            </tr>
+            
+            <tr>
+                <td><span class="badge badge-warning">WARNING</span></td>
+                <td><code>TH-001</code></td>
+                <td>Thermal Dissipation</td>
+                <td><strong>GND</strong></td>
+                <td>(80.00, 15.00)</td>
+                <td>IC 'U2' thermal pad (Pad EP) has only 1 thermal vias within 2.5 mm (Minimum required: 4).</td>
+                <td class="rec">Add a 4-via grid array (drill 0.3mm) connected to GND under 'U2' to ensure adequate heat sinking.</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</body>
+</html>

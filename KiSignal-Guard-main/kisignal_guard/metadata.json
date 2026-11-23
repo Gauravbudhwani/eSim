@@ -1,0 +1,34 @@
+{
+    "$schema": "https://go.kicad.org/pcm/schemas/v1",
+    "name": "KiSignal-Guard",
+    "description": "Intelligent High-Speed Signal Integrity (SI), EMC & Power Decoupling Linter for KiCad 9",
+    "description_full": "KiSignal-Guard is an advanced KiCad 9 plugin that verifies electrical semantics: return path split-plane crossings, decoupling capacitor parasitic loop inductance, trace crosstalk (3W rule), differential pair skew, and thermal via density.",
+    "identifier": "org.fossee.kisignal-guard",
+    "type": "plugin",
+    "author": {
+        "name": "FOSSEE eSim Contributor",
+        "contact": {
+            "email": "contact-esim@fossee.in"
+        }
+    },
+    "license": "GPL-3.0-or-later",
+    "resources": {
+        "homepage": "https://github.com/fossee/kisignal-guard"
+    },
+    "versions": [
+        {
+            "version": "1.0.0",
+            "status": "stable",
+            "kicad_version": "9.0",
+            "download_sha256": "",
+            "download_size": 0,
+            "download_url": "",
+            "install_size": 0,
+            "platforms": [
+                "windows",
+                "linux",
+                "macos"
+            ]
+        }
+    ]
+}

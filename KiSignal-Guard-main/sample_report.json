@@ -1,0 +1,106 @@
+{
+  "board_title": "Demo_HighSpeed_IoT_Controller.kicad_pcb",
+  "signal_integrity_score": 35.0,
+  "rules_executed": 5,
+  "execution_time_ms": 0.34,
+  "summary": {
+    "errors": 4,
+    "warnings": 1,
+    "info": 0,
+    "total_violations": 5
+  },
+  "violations": [
+    {
+      "rule_id": "EMC-001",
+      "rule_name": "Return Path Discontinuity & Split Plane Crossing",
+      "category": "Return Path & EMC",
+      "severity": "ERROR",
+      "net_name": "CLK_100MHz",
+      "location_mm": {
+        "x": 40.0,
+        "y": 25.0
+      },
+      "message": "Track on net 'CLK_100MHz' crosses a copper void/split plane. 1/4 sample points lack reference ground.",
+      "recommendation": "Reroute net 'CLK_100MHz' over a solid, unbroken ground plane or add a stitching capacitor / ground bridge across the plane split.",
+      "metrics": {
+        "is_critical": true,
+        "uncovered_samples": 1,
+        "layer": "F.Cu",
+        "length_mm": 60.0
+      }
+    },
+    {
+      "rule_id": "PDN-001",
+      "rule_name": "Decoupling Capacitor Proximity & Loop Inductance",
+      "category": "PDN & Decoupling",
+      "severity": "ERROR",
+      "net_name": "+3V3",
+      "location_mm": {
+        "x": 20.0,
+        "y": 10.0
+      },
+      "message": "Decoupling cap C1 is 8.50 mm away from U1 pin 1 (Exceeds 6.0 mm limit). Estimated parasitic loop inductance: ~14.4 nH.",
+      "recommendation": "Move capacitor C1 closer (< 3.5 mm) to U1 pin 1 to minimize PDN impedance.",
+      "metrics": {
+        "distance_mm": 8.5,
+        "inductance_nH": 14.4
+      }
+    },
+    {
+      "rule_id": "SI-001",
+      "rule_name": "Crosstalk & 3W Rule Compliance",
+      "category": "Crosstalk & Isolation",
+      "severity": "ERROR",
+      "net_name": "SPI_MOSI <-> SPI_SCK",
+      "location_mm": {
+        "x": 18.0,
+        "y": 35.175
+      },
+      "message": "Crosstalk hazard between nets 'SPI_MOSI' and 'SPI_SCK'. Parallel coupling run is 16.00 mm with spacing 0.10 mm (Violates 3W rule: required gap >= 0.50 mm).",
+      "recommendation": "Increase spacing between 'SPI_MOSI' and 'SPI_SCK' to at least 0.50 mm or interpose an in-between ground shield trace.",
+      "metrics": {
+        "coupling_length_mm": 16.0,
+        "actual_gap_mm": 0.1,
+        "required_gap_mm": 0.5,
+        "layer": "F.Cu"
+      }
+    },
+    {
+      "rule_id": "SI-002",
+      "rule_name": "Differential Pair Skew & Length Matching",
+      "category": "Differential Pair",
+      "severity": "ERROR",
+      "net_name": "USB_D_P/USB_D_N",
+      "location_mm": {
+        "x": 17.5,
+        "y": 5.0
+      },
+      "message": "Differential pair 'USB_D_P' / 'USB_D_N' has severe length mismatch: 25.00 mm vs 21.00 mm (Delta: 4.00 mm, Skew: ~24.8 ps).",
+      "recommendation": "Add serpentine / meander length tuning to the shorter net to balance within 0.5 mm (< 3.1 ps).",
+      "metrics": {
+        "len_positive_mm": 25.0,
+        "len_negative_mm": 21.0,
+        "delta_mm": 4.0,
+        "skew_ps": 24.8
+      }
+    },
+    {
+      "rule_id": "TH-001",
+      "rule_name": "Power IC Thermal Via Stitching",
+      "category": "Thermal Dissipation",
+      "severity": "WARNING",
+      "net_name": "GND",
+      "location_mm": {
+        "x": 80.0,
+        "y": 15.0
+      },
+      "message": "IC 'U2' thermal pad (Pad EP) has only 1 thermal vias within 2.5 mm (Minimum required: 4).",
+      "recommendation": "Add a 4-via grid array (drill 0.3mm) connected to GND under 'U2' to ensure adequate heat sinking.",
+      "metrics": {
+        "vias_found": 1,
+        "min_required": 4,
+        "search_radius_mm": 2.5
+      }
+    }
+  ]
+}
